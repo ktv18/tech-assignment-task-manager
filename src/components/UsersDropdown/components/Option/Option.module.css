@@ -1,0 +1,14 @@
+.option {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.nameDetails {
+  margin-left: 10px;
+}
+.nickName {
+  margin-left: 5px;
+}

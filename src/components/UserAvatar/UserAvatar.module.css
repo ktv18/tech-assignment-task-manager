@@ -1,0 +1,10 @@
+.userAvatar {
+  align-items: center;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  border: 1px solid #d0d0d0;
+  display: flex;
+  height: 32px;
+  justify-content: center;
+  width: 32px;
+}
