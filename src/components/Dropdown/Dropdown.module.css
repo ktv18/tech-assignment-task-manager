@@ -4,7 +4,6 @@
 
 .input {
   width: 100%;
-
   padding: 8px 12px;
 }
 
@@ -13,11 +12,12 @@
   font-size: 20px;
 }
 .option {
-  display: flex;
   align-items: center;
-  padding: 5px;
   border-radius: 5px;
+  display: flex;
   font-size: 14px;
+  padding: 5px;
+  padding-right: 10px;
 }
 
 .active {

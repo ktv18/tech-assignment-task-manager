@@ -2,12 +2,25 @@ import React, { useState } from 'react';
 import './App.css';
 import Dropdown from './components/Dropdown';
 import UsersDropdown from './components/UsersDropdown';
-import { users } from './mocks';
+import LabelsDropdown from './components/LabelsDropdown';
+import { users, labels } from './mocks';
 
 function App() {
   const [selectedUsersIds, setSelectedUsersIds] = useState([1, 0]);
+  const [selectedLabelsIds, setSelectedLabelsIds] = useState([]);
+  console.log('selectedLabelsIds', selectedLabelsIds);
   return (
     <div>
+      <LabelsDropdown
+        labels={labels}
+        selectedValues={selectedLabelsIds}
+        onChange={({ value, selected }) => {
+          if (Boolean(selected) === false) {
+            return setSelectedLabelsIds(selectedUsersIds.filter((id) => id !== value));
+          }
+          return setSelectedLabelsIds([...selectedUsersIds, value]);
+        }}
+      />
       <UsersDropdown
         users={users}
         selectedValues={selectedUsersIds}

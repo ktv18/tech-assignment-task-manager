@@ -5,12 +5,11 @@ import { useHandlers } from './hooks';
 import useComponentDidMount from '../../utils/hooks/useComponentDidMount';
 import { renderIf } from '../../utils/rendererUtils';
 
-const getOptionClassName = ({ active, selected }) =>
-  classNames([styles.option, active && styles.active, selected && styles.selected]);
-
 const Dropdown = (props) => {
   const {
     className,
+    activeOptionClassName = styles.active,
+    selectedOptionClassName = styles.selected,
     placeholder = 'search something',
     title = 'some test title',
     options = [],
@@ -18,9 +17,17 @@ const Dropdown = (props) => {
     selectedValues = [],
     onChange = (val) => console.log(val),
   } = props;
+
   const inputRef = useRef(null);
 
   useComponentDidMount(() => inputRef.current?.focus());
+
+  const getOptionClassName = ({ active, selected }) =>
+    classNames([
+      styles.option,
+      active && activeOptionClassName,
+      selected && selectedOptionClassName,
+    ]);
 
   const {
     state,
@@ -32,6 +39,17 @@ const Dropdown = (props) => {
 
   const defaultRenderOption = (args) => {
     const { value, active, selected } = args;
+
+    if (props.renderOptionWrapper) {
+      return props.renderOptionWrapper({
+        className: getOptionClassName({ active, selected }),
+        onMouseOver: () => handleOptionMouseOver({ value }),
+        onClick: () => handleOptionClick({ value }),
+        selected,
+        children: renderOption(args),
+      });
+    }
+
     return (
       <div
         className={getOptionClassName({ active, selected })}

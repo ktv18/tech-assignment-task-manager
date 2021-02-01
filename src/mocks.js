@@ -1,3 +1,17 @@
+import { LABELS_COLORS } from './constants';
+export const labels = [
+  {
+    id: '0',
+    color: '#61bd4f',
+    label: 'New label',
+  },
+  ...Object.keys(LABELS_COLORS).map((color, index) => ({
+    id: color + index,
+    color,
+    label: '',
+  })),
+];
+
 export const users = [
   {
     id: 0,
