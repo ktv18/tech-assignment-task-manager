@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Dropdown from './components/Dropdown';
+import { users } from './mocks';
 
 function App() {
+  const [selectedUsersIds, setSelectedUsersIds] = useState([1, 0]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Dropdown
+        options={users.map((user) => ({
+          value: user.id,
+          label: user.fullName,
+        }))}
+        selectedValues={selectedUsersIds}
+        onChange={({ value, selected }) => {
+          if (Boolean(selected) === false) {
+            return setSelectedUsersIds(selectedUsersIds.filter((id) => id !== value));
+          }
+          return setSelectedUsersIds([...selectedUsersIds, value]);
+        }}
+      />
     </div>
   );
 }

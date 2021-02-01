@@ -1,0 +1,32 @@
+.dropdown {
+  padding: 16px;
+}
+
+.input {
+  width: 100%;
+
+  padding: 8px 12px;
+}
+
+.optionsTitle {
+  margin: 8px 0;
+  font-size: 20px;
+}
+.option {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.active {
+  background-color: #f0f0f0;
+}
+
+.selected {
+}
+
+.tick {
+  margin-left: auto;
+}
