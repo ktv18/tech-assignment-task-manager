@@ -6,7 +6,12 @@ import Button from '../Button';
 import { useHandlers } from './hooks';
 
 const AddCard = (props) => {
-  const { className, onCardAdd = () => {} } = props;
+  const {
+    className,
+    onCardAdd = () => {},
+    addCardButtonLabel = 'Add Another Card',
+    addCardButtonClassName,
+  } = props;
   const formRef = useRef(null);
 
   const {
@@ -44,8 +49,11 @@ const AddCard = (props) => {
       </div>
     </form>
   ) : (
-    <Button className={styles.addCardButton} onClick={handleExpanderClick(true)}>
-      <span className={styles.plus}>+</span> Add Card
+    <Button
+      className={classNames(styles.addCardButton, addCardButtonClassName)}
+      onClick={handleExpanderClick(true)}
+    >
+      <span className={styles.plus}>+</span> {addCardButtonLabel}
     </Button>
   );
 

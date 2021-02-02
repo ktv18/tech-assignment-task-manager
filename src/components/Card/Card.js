@@ -4,9 +4,9 @@ import styles from './Card.module.css';
 import UserAvatar from '../UserAvatar';
 
 const Card = (props) => {
-  const { title = 'Implement Card Component', className, users = [{}, {}, {}], ...rest } = props;
+  const { title = 'Implement Card Component', className, users = [], ...rest } = props;
 
-  const renderUser = (user, index) => <UserAvatar key={index} {...{ user }} />;
+  const renderUser = (user) => <UserAvatar key={user.id} {...{ user }} className={styles.user} />;
 
   return (
     <div className={classNames(styles.card, className)} {...rest}>

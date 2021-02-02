@@ -1,0 +1,13 @@
+.cardsColumn {
+  background-color: #e0e0e0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.card {
+  margin-top: 10px;
+}
+
+.addCard {
+  margin-top: 10px;
+}

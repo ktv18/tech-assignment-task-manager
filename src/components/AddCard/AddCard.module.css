@@ -2,9 +2,14 @@
 }
 
 .addCardButton {
+  background-color: transparent;
+  border-color: transparent;
   display: flex;
   padding: 5px;
   width: 100%;
+}
+.addCardButton:hover {
+  background-color: #d0d0d0;
 }
 
 .plus {

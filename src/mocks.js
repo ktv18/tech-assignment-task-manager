@@ -45,3 +45,68 @@ export const users = [
     nickName: 'vasyl.ivan',
   },
 ];
+
+export const cards = [
+  {
+    id: '0',
+    title: 'some test title',
+    users: [
+      {
+        id: 44,
+        avatarUrl: 'https://picsum.photos/40/40',
+        fullName: 'Misha Devel',
+        firstName: 'Misha',
+        lastName: 'Devel',
+        nickName: 'misha.ivan',
+      },
+      {
+        id: 57,
+        fullName: 'Vasyl vasyl',
+        firstName: 'Vasyl',
+        lastName: 'vasyl',
+        nickName: 'vasyl.ivan',
+      },
+    ],
+  },
+  {
+    id: '0',
+    title: 'another card',
+    users: [
+      {
+        id: 44,
+        avatarUrl: 'https://picsum.photos/40/40',
+        fullName: 'Misha Devel',
+        firstName: 'Misha',
+        lastName: 'Devel',
+        nickName: 'misha.ivan',
+      },
+      {
+        id: 57,
+        fullName: 'Vasyl vasyl',
+        firstName: 'Vasyl',
+        lastName: 'vasyl',
+        nickName: 'vasyl.ivan',
+      },
+      {
+        id: 1,
+        fullName: 'Ivan Developerko',
+        firstName: 'Ivan',
+        lastName: 'Developerko',
+        nickName: 'ivan.ivan',
+      },
+    ],
+  },
+  {
+    id: '0',
+    title: 'one more card',
+    users: [
+      {
+        id: 0,
+        fullName: 'Ivan Developerko',
+        firstName: 'Ivan',
+        lastName: 'Developerko',
+        nickName: 'ivan.ivan',
+      },
+    ],
+  },
+];
