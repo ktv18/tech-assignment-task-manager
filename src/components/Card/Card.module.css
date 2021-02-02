@@ -1,0 +1,22 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  color: #0d0d0d;
+  font-size: 24px;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.card:hover {
+  background-color: #e0e0e0;
+  box-shadow: -4px 5px 33px -6px rgba(0, 0, 0, 0.5);
+}
+
+.users {
+  margin-top: 20px;
+  margin-left: auto;
+}

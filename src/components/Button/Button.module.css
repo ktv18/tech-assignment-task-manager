@@ -1,0 +1,10 @@
+.button {
+  border-width: 1px;
+  border-style: solid;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 5px 16px;
+  transition: background-color 0.1s ease-in-out, border-color var(--Button-transition),
+    opacity 0.1s ease-in-out;
+  user-select: none;
+}
