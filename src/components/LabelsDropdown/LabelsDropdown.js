@@ -1,8 +1,7 @@
 import React from 'react';
 import Dropdown from '../Dropdown';
-import classNames from 'classnames';
 import styles from './LabelsDropdown.module.css';
-import { renderIf } from '../../utils/rendererUtils';
+import Option from './components/Option';
 
 const normalizeOption = (item) => ({
   value: item.id,
@@ -21,21 +20,7 @@ const LabelsDropdown = (props) => {
       selectedValues={selectedValues}
       placeholder='Search labels...'
       title='LABELS'
-      renderOptionWrapper={(props) => {
-        const { children, className, ...rest } = props;
-        return (
-          <div className={classNames([styles.optionWrapper, className])} {...rest}>
-            {children}
-          </div>
-        );
-      }}
-      renderOption={(props) => (
-        <div className={styles.option} style={{ backgroundColor: props.color }}>
-          <div className={styles.optionCover} />
-          <span className={styles.label}>{props.label}</span>
-          {renderIf(Boolean(props.selected))(<span className={styles.tick}>✓</span>)}
-        </div>
-      )}
+      renderOptionWrapper={(props) => <Option key={props.id} {...props} />}
       activeOptionClassName={styles.activeOption}
       onChange={onChange}
     />

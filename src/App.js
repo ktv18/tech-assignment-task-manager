@@ -7,7 +7,7 @@ import { users, labels } from './mocks';
 
 function App() {
   const [selectedUsersIds, setSelectedUsersIds] = useState([1, 0]);
-  const [selectedLabelsIds, setSelectedLabelsIds] = useState([]);
+  const [selectedLabelsIds, setSelectedLabelsIds] = useState(['#61bd4f0', '0']);
   console.log('selectedLabelsIds', selectedLabelsIds);
   return (
     <div>
@@ -16,9 +16,9 @@ function App() {
         selectedValues={selectedLabelsIds}
         onChange={({ value, selected }) => {
           if (Boolean(selected) === false) {
-            return setSelectedLabelsIds(selectedUsersIds.filter((id) => id !== value));
+            return setSelectedLabelsIds(selectedLabelsIds.filter((id) => id !== value));
           }
-          return setSelectedLabelsIds([...selectedUsersIds, value]);
+          return setSelectedLabelsIds([...selectedLabelsIds, value]);
         }}
       />
       <UsersDropdown

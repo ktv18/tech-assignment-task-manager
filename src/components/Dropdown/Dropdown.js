@@ -4,6 +4,7 @@ import styles from './Dropdown.module.css';
 import { useHandlers } from './hooks';
 import useComponentDidMount from '../../utils/hooks/useComponentDidMount';
 import { renderIf } from '../../utils/rendererUtils';
+import Tick from '../Tick';
 
 const Dropdown = (props) => {
   const {
@@ -13,6 +14,7 @@ const Dropdown = (props) => {
     placeholder = 'search something',
     title = 'some test title',
     options = [],
+    renderOptionWrapper,
     renderOption = ({ label }) => label,
     selectedValues = [],
     onChange = (val) => console.log(val),
@@ -37,28 +39,27 @@ const Dropdown = (props) => {
     handleOptionMouseOver,
   } = useHandlers({ options, selectedValues, onChange, inputRef });
 
-  const defaultRenderOption = (args) => {
+  const renderOptionItem = (args) => {
     const { value, active, selected } = args;
 
-    if (props.renderOptionWrapper) {
-      return props.renderOptionWrapper({
-        className: getOptionClassName({ active, selected }),
-        onMouseOver: () => handleOptionMouseOver({ value }),
-        onClick: () => handleOptionClick({ value }),
-        selected,
+    const wrapperPartialProps = {
+      className: getOptionClassName({ active, selected }),
+      onMouseOver: () => handleOptionMouseOver({ value }),
+      onClick: () => handleOptionClick({ value }),
+    };
+
+    if (renderOptionWrapper) {
+      return renderOptionWrapper({
+        ...args,
+        ...wrapperPartialProps,
         children: renderOption(args),
       });
     }
 
     return (
-      <div
-        className={getOptionClassName({ active, selected })}
-        key={value}
-        onMouseOver={() => handleOptionMouseOver({ value })}
-        onClick={() => handleOptionClick({ value })}
-      >
+      <div {...wrapperPartialProps} key={value}>
         {renderOption(args)}
-        {renderIf(Boolean(selected))(<div className={styles.tick}>✓</div>)}
+        {renderIf(Boolean(selected))(<Tick className={styles.tick} />)}
       </div>
     );
   };
@@ -74,7 +75,7 @@ const Dropdown = (props) => {
         onKeyDown={handleKeyDown}
       />
       <div className={styles.optionsTitle}>{title}</div>
-      <div className={styles.optionsContainer}>{state.optionsToShow.map(defaultRenderOption)}</div>
+      <div className={styles.optionsContainer}>{state.optionsToShow.map(renderOptionItem)}</div>
     </div>
   );
 };

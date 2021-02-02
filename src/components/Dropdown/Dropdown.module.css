@@ -27,6 +27,7 @@
 .selected {
 }
 
-.tick {
+.option .tick {
+  color: #0d0d0d;
   margin-left: auto;
 }
