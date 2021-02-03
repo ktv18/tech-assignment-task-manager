@@ -8,9 +8,6 @@
   padding: 5px;
   width: 100%;
 }
-.addCardButton:hover {
-  background-color: #d0d0d0;
-}
 
 .plus {
   transform: scale(1.5);

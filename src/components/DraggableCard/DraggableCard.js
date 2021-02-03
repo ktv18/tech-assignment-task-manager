@@ -4,11 +4,11 @@ import Card from '../Card';
 
 const DraggableCard = (props) => {
   const { dragProps, cardProps } = props;
-  const { id, index, status, moveItem } = dragProps;
+  const { id, index, colId, moveItem } = dragProps;
 
   const { ref, isDragging } = useDnD({
     cardDetails: {
-      status,
+      colId,
       id,
       index,
       ...cardProps,

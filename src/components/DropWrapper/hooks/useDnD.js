@@ -5,7 +5,7 @@ const useDnD = (args) => {
   const { onDrop, canDrop } = args;
   const [{ isOver }, dropRef] = useDrop({
     accept: ITEM_TYPE,
-    canDrop: (item) => canDrop(item),
+    canDrop: (item, colId) => canDrop(item),
     drop: (item) => onDrop(item),
     collect: (monitor) => ({
       isOver: monitor.isOver(),

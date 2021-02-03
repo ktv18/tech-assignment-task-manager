@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { keyMap } from '../../../constants';
 
-const toLowerCase = (str) => str.toLowerCase();
+const toLowerCase = (str = '') => str.toLowerCase();
 const getFirstItem = (arr) => arr[0];
 const getLastIdx = (arr) => arr.length - 1;
 

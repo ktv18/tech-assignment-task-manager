@@ -7,22 +7,30 @@ import CardsColumn from '../../components/CardsColumn';
 import Dropdown from '../../components/Dropdown';
 import UsersDropdown from '../../components/UsersDropdown';
 import LabelsDropdown from '../../components/LabelsDropdown';
-import { users, labels, cards as cardsMock, statuses } from '../../mocks';
+import AddCard from '../../components/AddCard';
+import Card from '../../components/Card';
+import {
+  columns as columnsMock,
+  tasks as tasksMock,
+  labels as labelsMock,
+  users as usersMock,
+} from '../../mocksItems';
 
-const Homepage = () => {
-  const [items, setItems] = useState(cardsMock);
+const DemoPage = () => {
+  const [columns, setColumns] = useState(columnsMock);
+  const [tasks, setTasks] = useState(tasksMock);
   const [selectedUsersIds, setSelectedUsersIds] = useState([1, 0]);
   const [selectedLabelsIds, setSelectedLabelsIds] = useState(['#61bd4f0', '0']);
 
-  const onDrop = (item, status) => {
-    setItems((prevState) => {
-      return [...prevState.filter((i) => i.id !== item.id).concat({ ...item, status })];
+  const onDrop = (task, colId) => {
+    setTasks((prevState) => {
+      return [...prevState.filter((i) => i.id !== task.id).concat({ ...task, colId })];
     });
   };
 
   const moveItem = (dragIndex, hoverIndex) => {
-    const item = items[dragIndex];
-    setItems((prevState) => {
+    const item = tasks[dragIndex];
+    setTasks((prevState) => {
       const newItems = prevState.filter((i, idx) => idx !== dragIndex);
       newItems.splice(hoverIndex, 0, item);
       return [...newItems];
@@ -30,27 +38,53 @@ const Homepage = () => {
   };
 
   return (
-    <>
-      <h1>Columns Cards </h1>
+    <div className={styles.demo}>
+      <p>This is just a demo page to show some UI components</p>
+      <h1>Draggable Columns Cards </h1>
       <DndProvider backend={HTML5Backend}>
         <div className={styles.grid}>
-          {statuses.map((s) => {
+          {columns.map((col, index) => {
             return (
-              <DropWrapper key={s.status} onDrop={onDrop} status={s.status}>
+              <DropWrapper
+                key={col.id}
+                colId={col.id}
+                onCanDrop={(task) => {
+                  const targetColIdx = columns.findIndex(({ id }) => id === task.colId);
+                  return [index + 1, index - 1, index].includes(targetColIdx);
+                }}
+                onDrop={onDrop}
+                status={col.title}
+              >
                 <CardsColumn
-                  title={s.status}
-                  cards={items
-                    .filter((i) => i.status === s.status)
-                    .map((i, idx) => ({ ...i, index: idx, moveItem, status: s.status }))}
+                  title={col.title}
+                  onCardAdd={({ title }) => {
+                    const newCard = {
+                      title,
+                      users: [],
+                      colId: col.id,
+                    };
+                    setTasks([...tasks, newCard]);
+                  }}
+                  cards={tasks
+                    .filter((task) => task.colId === col.id)
+                    .map((task, idx) => ({ ...task, index: idx, moveItem }))}
                 />
               </DropWrapper>
             );
           })}
         </div>
       </DndProvider>
+      <br />
+      <br />
+      <br />
       <div>
+        <h1>Card</h1>
+        <Card title='test title' users={tasksMock[0].users} />
+        <h1>AddCard</h1>
+        <AddCard className={styles.addCard} onCardAdd={() => {}} />
+        <h1>Labels Dropdown </h1>
         <LabelsDropdown
-          labels={labels}
+          labels={labelsMock}
           selectedValues={selectedLabelsIds}
           onChange={({ value, selected }) => {
             if (Boolean(selected) === false) {
@@ -59,8 +93,9 @@ const Homepage = () => {
             return setSelectedLabelsIds([...selectedLabelsIds, value]);
           }}
         />
+        <h1>Users Dropdown </h1>
         <UsersDropdown
-          users={users}
+          users={usersMock}
           selectedValues={selectedUsersIds}
           onChange={({ value, selected }) => {
             if (Boolean(selected) === false) {
@@ -69,10 +104,11 @@ const Homepage = () => {
             return setSelectedUsersIds([...selectedUsersIds, value]);
           }}
         />
+        <h1>Base Dropdown </h1>
         <Dropdown
-          options={users.map((user) => ({
+          options={usersMock.map((user) => ({
             value: user.id,
-            label: user.fullName,
+            label: user.firstName + user.lastName,
           }))}
           selectedValues={selectedUsersIds}
           onChange={({ value, selected }) => {
@@ -83,8 +119,8 @@ const Homepage = () => {
           }}
         />
       </div>
-    </>
+    </div>
   );
 };
 
-export default Homepage;
+export default DemoPage;
