@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import styles from './CardsColumn.module.css';
 import DraggableCard from '../DraggableCard';
 import AddCard from '../AddCard';
+import EditableText from '../EditableText';
 
 const CardsColumn = (props) => {
   const { className, title = '', cards = [], onCardAdd = () => {}, isOver } = props;
@@ -17,7 +18,7 @@ const CardsColumn = (props) => {
 
   return (
     <div className={classNames(styles.cardsColumn, className)}>
-      <h2>{title.toUpperCase()}</h2>
+      <EditableText className={styles.title} value={title.toUpperCase()} />
       <div className={classNames(isOver && styles.active)}>{cards.map(renderCard)}</div>
       <AddCard className={styles.addCard} onCardAdd={onCardAdd} />
     </div>

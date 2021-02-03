@@ -13,7 +13,7 @@ const useHandlers = (args) => {
   });
 
   const optionsToShow = options
-    .filter((option) => toLowerCase(option.label).includes(toLowerCase(state.querySearch)))
+    .filter((option) => toLowerCase(option.label).includes(toLowerCase(state.querySearch.trim())))
     .map((option) => ({
       ...option,
       active: state.activeValue === option.value,

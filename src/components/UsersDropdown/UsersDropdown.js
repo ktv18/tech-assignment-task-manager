@@ -4,7 +4,6 @@ import Option from './components/Option';
 
 const normalizeOption = (user) => ({
   value: user.id,
-  label: user.fullName,
   ...user,
 });
 

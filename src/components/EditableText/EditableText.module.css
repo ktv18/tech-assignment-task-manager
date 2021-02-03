@@ -1,0 +1,18 @@
+.editable {
+  border-radius: 5px;
+  border-width: 1px;
+  border-color: transparent;
+  background-color: transparent;
+  padding: 4px;
+  width: 100%;
+}
+
+.editable.hovered {
+  border-width: 1px;
+  border-color: #4d90fe;
+  background-color: unset;
+}
+
+.editable:focus {
+  background-color: #fdfdfd;
+}

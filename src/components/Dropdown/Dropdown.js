@@ -18,11 +18,12 @@ const Dropdown = (props) => {
     renderOption = ({ label }) => label,
     selectedValues = [],
     onChange = (val) => console.log(val),
+    inputFocusOnMount = false,
   } = props;
 
   const inputRef = useRef(null);
 
-  useComponentDidMount(() => inputRef.current?.focus());
+  useComponentDidMount(() => inputFocusOnMount && inputRef.current?.focus());
 
   const getOptionClassName = ({ active, selected }) =>
     classNames([

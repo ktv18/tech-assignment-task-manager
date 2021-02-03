@@ -12,7 +12,7 @@ const Option = (props) => {
     <div className={getClassName(className)}>
       <UserAvatar user={user} />
       <div className={styles.nameDetails}>
-        <span>{user.fullName}</span>
+        <span>{`${user.firstName} ${user.lastName}`}</span>
         <span className={styles.nickName}>{`(${user.nickName})`}</span>
       </div>
     </div>
