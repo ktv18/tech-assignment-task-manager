@@ -13,7 +13,11 @@ export const LABELS_COLORS = {
   '#c377e0': '#c377e0',
 };
 
+export const ITEM_TYPE = 'ITEM_TYPE';
+
 const constants = {
   keyMap,
+  LABELS_COLORS,
+  ITEM_TYPE,
 };
 export default constants;

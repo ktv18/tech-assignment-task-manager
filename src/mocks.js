@@ -48,8 +48,9 @@ export const users = [
 
 export const cards = [
   {
-    id: '0',
-    title: 'some test title',
+    id: 1,
+    title: 'From "open"',
+    status: 'open',
     users: [
       {
         id: 44,
@@ -69,8 +70,9 @@ export const cards = [
     ],
   },
   {
-    id: '0',
-    title: 'another card',
+    id: 2,
+    status: 'open',
+    title: 'random card',
     users: [
       {
         id: 44,
@@ -97,8 +99,9 @@ export const cards = [
     ],
   },
   {
-    id: '0',
-    title: 'one more card',
+    id: 3,
+    title: 'from "in progress"',
+    status: 'in progress',
     users: [
       {
         id: 0,
@@ -108,5 +111,20 @@ export const cards = [
         nickName: 'ivan.ivan',
       },
     ],
+  },
+];
+
+export const statuses = [
+  {
+    status: 'open',
+  },
+  {
+    status: 'in progress',
+  },
+  {
+    status: 'in review',
+  },
+  {
+    status: 'done',
   },
 ];

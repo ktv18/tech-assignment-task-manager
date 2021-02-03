@@ -11,3 +11,11 @@
 .addCard {
   margin-top: 10px;
 }
+.cardsContainer {
+  min-height: 20px;
+}
+
+.active {
+  min-height: 100px;
+  background-color: #06c;
+}
