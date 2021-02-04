@@ -1,63 +1,26 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import styles from './AddCard.module.css';
-import useElementOuterClick from '../../utils/hooks/useElementOuterClick';
-import Button from '../Button';
-import { useHandlers } from './hooks';
+import AddNewEntity from '../AddNewEntity';
 
 const AddCard = (props) => {
   const {
     className,
     onCardAdd = () => {},
     addCardButtonLabel = 'Add Another Card',
+
     addCardButtonClassName,
   } = props;
-  const formRef = useRef(null);
 
-  const {
-    handleTitleChange,
-    handleSubmit,
-    handleExpanderClick,
-    handleOuterClick,
-    state,
-  } = useHandlers({
-    onCardAdd,
-  });
-
-  useElementOuterClick({
-    shouldHandle: state.expanded,
-    elementRef: formRef,
-    onOuterClick: handleOuterClick,
-  });
-
-  const innerContent = state.expanded ? (
-    <form ref={formRef} onSubmit={handleSubmit} className={styles.form}>
-      <textarea
-        className={styles.textarea}
-        placeholder='Enter a title for this card'
-        rows={5}
-        value={state.title}
-        onChange={handleTitleChange}
-      ></textarea>
-      <div className={styles.formButtons}>
-        <Button className={styles.button} type='submit'>
-          Add Card
-        </Button>
-        <Button className={styles.closeButton} type='button' onClick={handleExpanderClick(false)}>
-          X
-        </Button>
-      </div>
-    </form>
-  ) : (
-    <Button
-      className={classNames(styles.addCardButton, addCardButtonClassName)}
-      onClick={handleExpanderClick(true)}
-    >
-      <span className={styles.plus}>+</span> {addCardButtonLabel}
-    </Button>
+  return (
+    <AddNewEntity
+      className={classNames(styles.addCard, className)}
+      addEntityButtonClassName={addCardButtonClassName}
+      submitEntityButtonLabel='Add Card'
+      addEntityButtonLabel={addCardButtonLabel}
+      onEntityAdd={onCardAdd}
+    />
   );
-
-  return <div className={classNames(styles.addCard, className)}>{innerContent}</div>;
 };
 
 export default AddCard;

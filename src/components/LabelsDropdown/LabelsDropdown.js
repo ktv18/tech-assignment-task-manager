@@ -11,7 +11,6 @@ const normalizeOption = (item) => ({
 
 const LabelsDropdown = (props) => {
   const { className, labels, selectedValues, onChange } = props;
-  console.log('labels', labels);
 
   return (
     <Dropdown

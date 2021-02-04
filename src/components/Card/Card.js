@@ -3,13 +3,12 @@ import classNames from 'classnames';
 import styles from './Card.module.css';
 import { EditModal } from './components';
 import UserAvatar from '../UserAvatar';
+import useModal from '../../utils/hooks/useModal';
 
 const Card = (props) => {
   const { title, className, users = [] } = props;
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const showModal = () => setModalVisible(true);
-  const hideModal = () => setModalVisible(false);
+  const { modalVisible, showModal, hideModal } = useModal();
 
   const renderUser = (user) => <UserAvatar key={user.id} {...{ user }} className={styles.user} />;
 

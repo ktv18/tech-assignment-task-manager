@@ -1,0 +1,40 @@
+.modal {
+  width: 90vw;
+}
+
+.dropdown {
+  margin-top: 10px;
+}
+
+.newUserSection {
+  display: flex;
+}
+
+.newUserSection button {
+  margin-left: auto;
+}
+
+.userOption {
+  display: flex;
+  border-bottom: 2px #eee solid;
+}
+
+.userOption > div,
+.userOption > input {
+  width: 100%;
+  padding: 4px;
+  border-width: 1px;
+  border-color: #ccc;
+}
+.userOption > * {
+  margin: 10px;
+}
+
+.delete {
+  border: 1px #d80000 solid;
+  color: #bf0000;
+}
+.delete:hover {
+  background-color: #bf0000;
+  color: #fdfdfd;
+}

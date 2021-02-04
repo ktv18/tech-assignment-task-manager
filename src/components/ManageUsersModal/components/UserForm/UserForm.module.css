@@ -1,0 +1,10 @@
+.input {
+  padding: 4px;
+  border-width: 1px;
+  border-color: #ccc;
+  border-radius: 4px;
+}
+
+.input.inputError {
+  border-color: red;
+}

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const useHandlers = (args) => {
-  const { onCardAdd } = args;
+  const { onEntityAdd } = args;
 
   const [title, setTitle] = useState('');
   const [expanded, setExpanded] = useState(false);
@@ -13,7 +13,7 @@ const useHandlers = (args) => {
 
   const handleCardAdd = () => {
     if (!title) return;
-    onCardAdd({ title });
+    onEntityAdd({ title });
     return setTitle('');
   };
 

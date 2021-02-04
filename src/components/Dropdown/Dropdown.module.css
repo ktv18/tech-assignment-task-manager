@@ -1,8 +1,9 @@
 .dropdown {
-  padding: 16px;
 }
 
 .input {
+  border-width: 1px;
+  border-radius: 4px;
   width: 100%;
   padding: 8px 12px;
 }

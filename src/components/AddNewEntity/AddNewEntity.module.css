@@ -1,0 +1,33 @@
+.addEntity {
+}
+
+.addEntityButton {
+  background-color: transparent;
+  border-color: transparent;
+  display: flex;
+  padding: 5px;
+  width: 100%;
+}
+
+.plus {
+  transform: scale(1.5);
+  margin-right: 20px;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.textarea,
+.input {
+  flex-basis: 100%;
+}
+
+.formButtons {
+  margin-top: 10px;
+}
+
+.closeButton {
+  margin-left: 20px;
+}
