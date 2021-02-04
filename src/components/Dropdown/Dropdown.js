@@ -12,7 +12,7 @@ const Dropdown = (props) => {
     activeOptionClassName = styles.active,
     selectedOptionClassName = styles.selected,
     placeholder = 'search something',
-    title = 'some test title',
+    title,
     options = [],
     renderOptionWrapper,
     renderOption = ({ label }) => label,
@@ -75,7 +75,8 @@ const Dropdown = (props) => {
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
-      <div className={styles.optionsTitle}>{title}</div>
+      {renderIf(title)(<div className={styles.optionsTitle}>{title}</div>)}
+
       <div className={styles.optionsContainer}>{state.optionsToShow.map(renderOptionItem)}</div>
     </div>
   );

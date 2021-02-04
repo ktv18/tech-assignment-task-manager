@@ -30,7 +30,6 @@ const ManageUsersModal = (props) => {
   const [newUserMode, setNewUserMode] = useState(false);
 
   const users = usersObjToArr(props.users);
-  console.log('users users users', users);
 
   const switchToForm = (id, value) =>
     setFormsIds((prevState) => {

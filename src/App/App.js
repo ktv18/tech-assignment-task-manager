@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './App.module.css';
 import Board from '../views/Board/Board';
 import ManageUsersModal from '../components/ManageUsersModal';
@@ -53,6 +53,7 @@ function App() {
             <div className={styles.boardsTiles}>
               {boards.map(({ title, id }) => (
                 <BoardTile
+                  key={id}
                   title={title}
                   onBoardDelete={() => handleBoardDelete(id)}
                   onBoardUpdate={handleBoardUpdate(id)}

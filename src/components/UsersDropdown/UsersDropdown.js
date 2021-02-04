@@ -9,14 +9,7 @@ const normalizeOption = (user) => ({
 });
 
 const UsersDropdown = (props) => {
-  const {
-    className,
-    users = [],
-    title = 'Users',
-    onChange,
-    selectedValues,
-    renderOptionWrapper,
-  } = props;
+  const { className, users = [], title, onChange, selectedValues, renderOptionWrapper } = props;
   return (
     <Dropdown
       className={className}

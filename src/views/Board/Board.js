@@ -1,63 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import styles from './Board.module.css';
 import DropWrapper from '../../components/DropWrapper';
 import CardsColumn from '../../components/CardsColumn';
 import AddColumn from '../../components/AddColumn';
-import { generateRandomId } from '../../utils/common';
-
-const selectTaskProps = ({ id, usersIds, title, colId, index }) => ({
-  id,
-  usersIds,
-  title,
-  colId,
-  index,
-});
+import { useHandlers, useStorageHook } from './hooks';
 
 const BoardPage = (props) => {
   const { users, initialTasks, initialColumns, onTasksSave, onColumnsSave } = props;
-  const [columns, setColumns] = useState(initialColumns || []);
-  const [tasks, setTasks] = useState(initialTasks || []);
+  const {
+    state,
+    handleTaskUpdate,
+    handleColumnDelete,
+    handleColumnUpdate,
+    handleColumnAdd,
+    handleMoveItem,
+    handleCardAdd,
+    handleDrop,
+    checkDrop,
+  } = useHandlers({ initialColumns, initialTasks });
 
-  useEffect(() => {
-    onTasksSave(tasks);
-  }, [tasks]);
+  const { columns, tasks } = state;
 
-  useEffect(() => {
-    onColumnsSave(columns);
-  }, [columns]);
+  useStorageHook({
+    columns,
+    tasks,
+    onTasksSave,
+    onColumnsSave,
+  });
 
-  const onDrop = (task, colId) => {
-    console.log('task', task);
-    setTasks((prevState) =>
-      prevState.filter((i) => i.id !== task.id).concat(selectTaskProps({ ...task, colId })),
-    );
-  };
-
-  const moveItem = (dragIndex, hoverIndex) => {
-    const item = tasks[dragIndex];
-    setTasks((prevState) => {
-      const newItems = prevState.filter((i, idx) => idx !== dragIndex);
-      newItems.splice(hoverIndex, 0, item);
-      return [...newItems];
-    });
-  };
-
-  const handleColumnAdd = ({ title }) => {
-    const newBoard = {
-      title,
-      id: generateRandomId(),
-    };
-    setColumns((prevState) => [...prevState, newBoard]);
-  };
-
-  const handleTaskUpdate = (task) => {
-    const taskIdxToUpdate = tasks.findIndex(({ id }) => id === task.id);
-    tasks[taskIdxToUpdate] = task;
-    setTasks([...tasks]);
-  };
-  console.log('tasks', tasks);
   return (
     <div className={styles.board}>
       <DndProvider backend={HTML5Backend}>
@@ -67,32 +39,22 @@ const BoardPage = (props) => {
               <DropWrapper
                 key={col.id}
                 colId={col.id}
-                onCanDrop={(task) => {
-                  const targetColIdx = columns.findIndex(({ id }) => id === task.colId);
-                  return [index + 1, index - 1, index].includes(targetColIdx);
-                }}
-                onDrop={onDrop}
+                onCanDrop={checkDrop(index)}
+                onDrop={handleDrop}
                 status={col.title}
               >
                 <CardsColumn
                   title={col.title}
-                  onCardAdd={({ title }) => {
-                    const newTask = {
-                      id: generateRandomId(),
-                      title,
-                      usersIds: [],
-                      index: tasks.length,
-                      colId: col.id,
-                    };
-                    setTasks([...tasks, newTask]);
-                  }}
+                  onTitleUpdate={(title) => handleColumnUpdate({ title, id: col.id })}
+                  onColumnDelete={() => handleColumnDelete(col.id)}
+                  onCardAdd={handleCardAdd(col.id)}
                   onCardUpdate={(task) => handleTaskUpdate({ ...task, colId: col.id })}
                   cards={tasks
                     .filter((task) => task.colId === col.id)
                     .sort((prev, next) => prev.index - next.index)
                     .map((task, idx) => {
                       const cardUsers = task.usersIds.map((id) => users[id]).filter((user) => user);
-                      return { ...task, users: cardUsers, index: idx, moveItem };
+                      return { ...task, users: cardUsers, index: idx, moveItem: handleMoveItem };
                     })}
                 />
               </DropWrapper>

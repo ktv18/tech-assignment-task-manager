@@ -1,5 +1,5 @@
 import { generateRandomId } from '../../utils/common';
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const useHandlers = (args) => {
   const { initialUsers, initialBoards } = args;

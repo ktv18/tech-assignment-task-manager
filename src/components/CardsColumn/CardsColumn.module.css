@@ -24,5 +24,54 @@
 .active {
   border-radius: 4px;
   min-height: 100px;
-  background-color: rgba(0, 204, 102, 0.6);
+  background-color: rgba(0, 204, 102, 0.3);
+}
+
+.dotsContainer {
+  display: flex;
+  padding: 5px 0;
+
+  position: relative;
+  transition: all 0.1s ease-in-out;
+}
+
+.dotsContainer .dots {
+  margin-left: auto;
+  opacity: 0;
+  border: 0 transparent;
+  background-color: transparent;
+  top: 25px;
+  left: 150px;
+  display: flex;
+  flex-direction: row;
+  font-size: 24px;
+}
+
+.cardsColumn:hover .dots {
+  opacity: 1;
+}
+
+.dots div {
+  margin-left: 3px;
+  background-color: #000;
+  border-radius: 50%;
+  height: 6px;
+  width: 6px;
+}
+
+div.popOver {
+  width: 110px;
+  top: 25px;
+  right: -90px;
+  position: absolute;
+}
+
+button.delete {
+  margin-left: 10px;
+  border: 1px #d80000 solid;
+  color: #bf0000;
+}
+button.delete:hover {
+  background-color: #bf0000;
+  color: #fdfdfd;
 }

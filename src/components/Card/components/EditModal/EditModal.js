@@ -37,7 +37,6 @@ const EditModal = (props) => {
   return (
     <Modal show={show} onClose={onClose}>
       <EditableText value={title} onChange={handleTitleChange} placeholder='Write a task title' />
-      <h3>Users</h3>
       <div className={styles.users}>
         {users.map(renderUser)}
         <div className={styles.popOverWrapper}>
