@@ -50,6 +50,14 @@ const ManageUsersModal = (props) => {
     setNewUserMode(false);
   };
 
+  const handleUserUpdate = (id, user) => {
+    onUserUpdate({
+      id,
+      ...user,
+    });
+    switchToForm(id, false);
+  };
+
   return (
     <>
       <Button onClick={showModal}>{'Manage Users'}</Button>
@@ -96,7 +104,7 @@ const ManageUsersModal = (props) => {
             return renderForm({
               key: props.id,
               onCancel: () => switchToForm(props.id, false),
-              onSubmit: onUserUpdate,
+              onSubmit: (user) => handleUserUpdate(props.id, user),
               fields: formFields,
             });
           }}

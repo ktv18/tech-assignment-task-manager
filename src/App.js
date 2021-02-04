@@ -7,6 +7,9 @@ import { generateRandomId } from './utils/common';
 
 function App() {
   const [users, setUsers] = useState([]);
+  const handleDeleteUser = (id) => {
+    setUsers((prevState) => prevState.filter((user) => user.id !== id));
+  };
   const handleUserCreate = (user) => {
     console.log('user', user);
     setUsers((prevState) => [
@@ -18,9 +21,20 @@ function App() {
     ]);
   };
 
+  const handleUserUpdate = (user) => {
+    const userIdxToUpdate = users.findIndex(({ id }) => id === user.id);
+    users[userIdxToUpdate] = user;
+    setUsers([...users]);
+  };
+
   return (
     <>
-      <ManageUsersModal onUserCreate={handleUserCreate} users={users} />
+      <ManageUsersModal
+        onUserDelete={handleDeleteUser}
+        onUserCreate={handleUserCreate}
+        onUserUpdate={handleUserUpdate}
+        users={users}
+      />
       <Board />
       <Demo />
     </>

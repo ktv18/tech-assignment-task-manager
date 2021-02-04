@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import styles from './EditableText.module.css';
 
 const EditableText = (props) => {
-  const { value, onChange, type = 'text', placeholder, className } = props;
+  const { value, onChange = () => {}, type = 'text', placeholder, className } = props;
   const [mouseOvered, setMouseOvered] = useState(false);
   const ref = useRef(null);
 
