@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import styles from './EditableText.module.css';
 
 const EditableText = (props) => {
-  const { value, onChange = () => {}, type = 'text', placeholder, className } = props;
+  const { value, onChange = () => {}, onFocus, type = 'text', placeholder, className } = props;
   const [mouseOvered, setMouseOvered] = useState(false);
   const ref = useRef(null);
 
@@ -29,6 +29,7 @@ const EditableText = (props) => {
       ref={ref}
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
+      onFocus={onFocus}
       onKeyDown={(e) => handleKeyDown(e, type)}
       type={type}
       className={classNames(styles.editable, mouseOvered && styles.hovered, className)}

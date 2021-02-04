@@ -15,11 +15,20 @@ export const LABELS_COLORS = {
 
 export const ITEM_TYPE = 'ITEM_TYPE';
 
+export const localStorageKey = 'task-manager';
+export const boardsEntity = `${localStorageKey}-boards`;
+export const usersEntity = `${localStorageKey}-tasks`;
+export const tasksEntity = `${localStorageKey}-users`;
+export const columnsEntity = `${localStorageKey}-columns`;
+
 const constants = {
   keyMap,
   LABELS_COLORS,
   ITEM_TYPE,
+  boardsEntity,
+  usersEntity,
+  tasksEntity,
+  columnsEntity,
 };
 
-export const localStorageKey = 'task-manager';
 export default constants;

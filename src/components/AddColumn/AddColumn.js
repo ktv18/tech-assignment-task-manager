@@ -11,7 +11,7 @@ const AddColumn = (props) => {
       inputType='input'
       className={classNames(styles.addCard, className)}
       addEntityButtonClassName={addColumnButtonClassName}
-      addEntityButtonLabel={'Add Another Column'}
+      addEntityButtonLabel={'Add New Column'}
       submitEntityButtonLabel='Add Column'
       onEntityAdd={onColumnAdd}
     />

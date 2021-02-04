@@ -1,0 +1,7 @@
+.popOver {
+  background-color: #fdfdfd;
+  border-radius: 5px;
+  width: 300px;
+  padding: 10px 15px;
+  box-shadow: 0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%);
+}

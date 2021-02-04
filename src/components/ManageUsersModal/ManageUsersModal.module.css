@@ -1,5 +1,6 @@
 .modal {
-  width: 90vw;
+  width: 70vw;
+  min-width: 600px;
 }
 
 .dropdown {

@@ -1,0 +1,26 @@
+.container {
+  position: relative;
+}
+
+.popOver {
+  position: absolute;
+  left: 170px;
+  top: 80px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form input {
+  width: 100%;
+  border-radius: 4px;
+  padding: 4px;
+  border-width: 1px;
+  border-color: #ccc;
+}
+
+.form button {
+  margin-left: auto;
+}

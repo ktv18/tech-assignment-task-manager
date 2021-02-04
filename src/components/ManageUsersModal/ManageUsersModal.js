@@ -81,9 +81,6 @@ const ManageUsersModal = (props) => {
           renderOptionWrapper={(props) => {
             if (Boolean(formsIds[props.id]) === false) {
               const { avatarUrl, firstName, lastName, nickName } = props;
-              console.log('props', props);
-              console.log('props.id', props.id);
-              console.log('props.value', props.value);
               return (
                 <UserTextRow
                   key={props.id}

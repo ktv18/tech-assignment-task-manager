@@ -24,4 +24,17 @@ export const runIf = (condition) => (functionToRun) => (...args) => {
   }
 };
 
+export const readFromStorage = (entityName) => {
+  try {
+    const res = localStorage.getItem(entityName);
+    return res && JSON.parse(res);
+  } catch (e) {
+    return null;
+  }
+};
+
+export const saveToStorage = (entityName, data) => {
+  localStorage.setItem(entityName, JSON.stringify(data));
+};
+
 export const usersObjToArr = (users) => Object.keys(users).map((key) => users[key]);

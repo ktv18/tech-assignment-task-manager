@@ -98,9 +98,7 @@ const BoardPage = (props) => {
               </DropWrapper>
             );
           })}
-          <div>
-            <AddColumn onColumnAdd={handleColumnAdd} />
-          </div>
+          <AddColumn className={styles.addColumn} onColumnAdd={handleColumnAdd} />
         </div>
       </DndProvider>
     </div>

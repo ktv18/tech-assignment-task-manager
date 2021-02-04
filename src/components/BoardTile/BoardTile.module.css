@@ -1,0 +1,78 @@
+.container {
+  position: relative;
+}
+
+.boardTile {
+  margin: 10px;
+  align-items: center;
+  cursor: pointer;
+  background-color: #fafafa;
+  box-shadow: 0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%);
+  border-radius: 5px;
+  display: flex;
+  height: 150px;
+  justify-content: center;
+  width: 200px;
+}
+
+.dots {
+  border: 0;
+  opacity: 0;
+  top: 25px;
+  left: 150px;
+  display: flex;
+  flex-direction: row;
+  padding: 3px;
+  font-size: 24px;
+  transition: all 0.1s ease-in-out;
+  position: absolute;
+}
+
+.dots div {
+  margin-left: 3px;
+  background-color: #000;
+  border-radius: 50%;
+  height: 6px;
+  width: 6px;
+}
+
+.boardTile:hover {
+  background-color: #f0f0f0;
+  box-shadow: -2px 3px 16px -3px rgba(0, 0, 0, 0.5);
+}
+.boardTile:hover .dots {
+  opacity: 1;
+}
+
+.popOver {
+  position: absolute;
+  top: 0;
+  left: 200px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form input {
+  width: 100%;
+  border-radius: 4px;
+  padding: 4px;
+  border-width: 1px;
+  border-color: #ccc;
+}
+
+.buttons {
+  display: flex;
+}
+
+.delete {
+  margin-left: 10px;
+  border: 1px #d80000 solid;
+  color: #bf0000;
+}
+.delete:hover {
+  background-color: #bf0000;
+  color: #fdfdfd;
+}
