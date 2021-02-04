@@ -1,3 +1,3 @@
-# Task Manager (still in progress)
+# Task Manager (CRA based)
 
 [Components Demo Page](https://ktv18.github.io/tech-assignment-task-manager/)
