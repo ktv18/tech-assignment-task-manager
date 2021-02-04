@@ -6,7 +6,7 @@ import UserAvatar from '../UserAvatar';
 import useModal from '../../utils/hooks/useModal';
 
 const Card = (props) => {
-  const { title, className, users = [] } = props;
+  const { title, className, users = [], onCardUpdate } = props;
 
   const { modalVisible, showModal, hideModal } = useModal();
 
@@ -18,9 +18,13 @@ const Card = (props) => {
         <span>{title}</span>
         <div className={styles.users}>{users.map(renderUser)}</div>
       </div>
-      <EditModal title={title} onClose={hideModal} show={modalVisible}>
-        {users.map(renderUser)}
-      </EditModal>
+      <EditModal
+        title={title}
+        users={users}
+        onClose={hideModal}
+        show={modalVisible}
+        onCardUpdate={onCardUpdate}
+      ></EditModal>
     </>
   );
 };

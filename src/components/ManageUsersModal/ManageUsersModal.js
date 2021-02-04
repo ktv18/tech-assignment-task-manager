@@ -5,6 +5,7 @@ import UsersDropdown from '../UsersDropdown';
 import useModal from '../../utils/hooks/useModal';
 import styles from './ManageUsersModal.module.css';
 import { UserForm, UserTextRow } from './components';
+import { usersObjToArr } from '../../utils/common';
 import { renderIf } from '../../utils/rendererUtils';
 
 const fieldsConfig = [
@@ -22,16 +23,14 @@ const getUserField = ({ name, value = '', placeholder = '' }) => ({
 });
 
 const ManageUsersModal = (props) => {
-  const {
-    users = [],
-    onUserUpdate = () => {},
-    onUserCreate = () => {},
-    onUserDelete = () => {},
-  } = props;
+  const { onUserUpdate = () => {}, onUserCreate = () => {}, onUserDelete = () => {} } = props;
 
   const { modalVisible, showModal, hideModal } = useModal();
   const [formsIds, setFormsIds] = useState({});
   const [newUserMode, setNewUserMode] = useState(false);
+
+  const users = usersObjToArr(props.users);
+  console.log('users users users', users);
 
   const switchToForm = (id, value) =>
     setFormsIds((prevState) => {
@@ -82,6 +81,9 @@ const ManageUsersModal = (props) => {
           renderOptionWrapper={(props) => {
             if (Boolean(formsIds[props.id]) === false) {
               const { avatarUrl, firstName, lastName, nickName } = props;
+              console.log('props', props);
+              console.log('props.id', props.id);
+              console.log('props.value', props.value);
               return (
                 <UserTextRow
                   key={props.id}
@@ -102,7 +104,7 @@ const ManageUsersModal = (props) => {
               .map(getUserField);
 
             return renderForm({
-              key: props.id,
+              key: props.value,
               onCancel: () => switchToForm(props.id, false),
               onSubmit: (user) => handleUserUpdate(props.id, user),
               fields: formFields,

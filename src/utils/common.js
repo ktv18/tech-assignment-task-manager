@@ -23,3 +23,5 @@ export const runIf = (condition) => (functionToRun) => (...args) => {
     return functionToRun(...args);
   }
 };
+
+export const usersObjToArr = (users) => Object.keys(users).map((key) => users[key]);

@@ -1,43 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import Demo from './views/Demo/Demo';
 import Board from './views/Board/Board';
 import ManageUsersModal from './components/ManageUsersModal';
 import { generateRandomId } from './utils/common';
+import GlobalStateContext from './GlobalStateContext';
+
+const localStorageKey = 'task-manager';
+const usersEntity = `${localStorageKey}-tasks`;
+const tasksEntity = `${localStorageKey}-users`;
+const columnsEntity = `${localStorageKey}-columns`;
+
+const readFromStorage = (entityName) => {
+  try {
+    const res = localStorage.getItem(entityName);
+    return res && JSON.parse(res);
+  } catch (e) {
+    return null;
+  }
+};
+
+const saveToStorage = (entityName, data) => {
+  localStorage.setItem(entityName, JSON.stringify(data));
+};
 
 function App() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState(readFromStorage(usersEntity) || {});
+
+  useEffect(() => {
+    saveToStorage(usersEntity, users);
+  }, [users]);
+
   const handleDeleteUser = (id) => {
-    setUsers((prevState) => prevState.filter((user) => user.id !== id));
+    const nextUsers = { ...users };
+    delete nextUsers[id];
+    setUsers(nextUsers);
   };
   const handleUserCreate = (user) => {
-    console.log('user', user);
-    setUsers((prevState) => [
+    const newUserId = generateRandomId();
+    setUsers((prevState) => ({
       ...prevState,
-      {
-        id: generateRandomId(),
+      [newUserId]: {
+        id: newUserId,
         ...user,
       },
-    ]);
+    }));
   };
 
   const handleUserUpdate = (user) => {
-    const userIdxToUpdate = users.findIndex(({ id }) => id === user.id);
-    users[userIdxToUpdate] = user;
-    setUsers([...users]);
+    setUsers({
+      ...users,
+      [user.id]: user,
+    });
   };
 
   return (
-    <>
+    <GlobalStateContext.Provider value={{ users }}>
       <ManageUsersModal
         onUserDelete={handleDeleteUser}
         onUserCreate={handleUserCreate}
         onUserUpdate={handleUserUpdate}
         users={users}
       />
-      <Board />
-      <Demo />
-    </>
+      <Board
+        initialTasks={readFromStorage(tasksEntity)}
+        initialColumns={readFromStorage(columnsEntity)}
+        users={users}
+        onColumnsSave={(cols) => saveToStorage(columnsEntity, cols)}
+        onTasksSave={(tasks) => saveToStorage(tasksEntity, tasks)}
+      />
+    </GlobalStateContext.Provider>
   );
 }
 

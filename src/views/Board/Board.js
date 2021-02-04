@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import styles from './Board.module.css';
@@ -7,14 +7,32 @@ import CardsColumn from '../../components/CardsColumn';
 import AddColumn from '../../components/AddColumn';
 import { generateRandomId } from '../../utils/common';
 
-const BoardPage = () => {
-  const [columns, setColumns] = useState([]);
-  const [tasks, setTasks] = useState([]);
+const selectTaskProps = ({ id, usersIds, title, colId, index }) => ({
+  id,
+  usersIds,
+  title,
+  colId,
+  index,
+});
+
+const BoardPage = (props) => {
+  const { users, initialTasks, initialColumns, onTasksSave, onColumnsSave } = props;
+  const [columns, setColumns] = useState(initialColumns || []);
+  const [tasks, setTasks] = useState(initialTasks || []);
+
+  useEffect(() => {
+    onTasksSave(tasks);
+  }, [tasks]);
+
+  useEffect(() => {
+    onColumnsSave(columns);
+  }, [columns]);
 
   const onDrop = (task, colId) => {
-    setTasks((prevState) => {
-      return [...prevState.filter((i) => i.id !== task.id).concat({ ...task, colId })];
-    });
+    console.log('task', task);
+    setTasks((prevState) =>
+      prevState.filter((i) => i.id !== task.id).concat(selectTaskProps({ ...task, colId })),
+    );
   };
 
   const moveItem = (dragIndex, hoverIndex) => {
@@ -26,7 +44,7 @@ const BoardPage = () => {
     });
   };
 
-  const handleBoardAdd = ({ title }) => {
+  const handleColumnAdd = ({ title }) => {
     const newBoard = {
       title,
       id: generateRandomId(),
@@ -34,6 +52,12 @@ const BoardPage = () => {
     setColumns((prevState) => [...prevState, newBoard]);
   };
 
+  const handleTaskUpdate = (task) => {
+    const taskIdxToUpdate = tasks.findIndex(({ id }) => id === task.id);
+    tasks[taskIdxToUpdate] = task;
+    setTasks([...tasks]);
+  };
+  console.log('tasks', tasks);
   return (
     <div className={styles.board}>
       <DndProvider backend={HTML5Backend}>
@@ -53,23 +77,29 @@ const BoardPage = () => {
                 <CardsColumn
                   title={col.title}
                   onCardAdd={({ title }) => {
-                    const newCard = {
+                    const newTask = {
                       id: generateRandomId(),
                       title,
-                      users: [],
+                      usersIds: [],
+                      index: tasks.length,
                       colId: col.id,
                     };
-                    setTasks([...tasks, newCard]);
+                    setTasks([...tasks, newTask]);
                   }}
+                  onCardUpdate={(task) => handleTaskUpdate({ ...task, colId: col.id })}
                   cards={tasks
                     .filter((task) => task.colId === col.id)
-                    .map((task, idx) => ({ ...task, index: idx, moveItem }))}
+                    .sort((prev, next) => prev.index - next.index)
+                    .map((task, idx) => {
+                      const cardUsers = task.usersIds.map((id) => users[id]).filter((user) => user);
+                      return { ...task, users: cardUsers, index: idx, moveItem };
+                    })}
                 />
               </DropWrapper>
             );
           })}
           <div>
-            <AddColumn onColumnAdd={handleBoardAdd} />
+            <AddColumn onColumnAdd={handleColumnAdd} />
           </div>
         </div>
       </DndProvider>

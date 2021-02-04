@@ -20,4 +20,6 @@ const constants = {
   LABELS_COLORS,
   ITEM_TYPE,
 };
+
+export const localStorageKey = 'task-manager';
 export default constants;
