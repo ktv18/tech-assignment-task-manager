@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/tech-assignment-task-manager/static/css/main.8f4c9bd3.chunk.css",
-    "main.js": "/tech-assignment-task-manager/static/js/main.7523768c.chunk.js",
-    "main.js.map": "/tech-assignment-task-manager/static/js/main.7523768c.chunk.js.map",
-    "runtime-main.js": "/tech-assignment-task-manager/static/js/runtime-main.a7058dea.js",
-    "runtime-main.js.map": "/tech-assignment-task-manager/static/js/runtime-main.a7058dea.js.map",
-    "static/js/2.e5a04b6f.chunk.js": "/tech-assignment-task-manager/static/js/2.e5a04b6f.chunk.js",
-    "static/js/2.e5a04b6f.chunk.js.map": "/tech-assignment-task-manager/static/js/2.e5a04b6f.chunk.js.map",
-    "static/js/3.fe8273c2.chunk.js": "/tech-assignment-task-manager/static/js/3.fe8273c2.chunk.js",
-    "static/js/3.fe8273c2.chunk.js.map": "/tech-assignment-task-manager/static/js/3.fe8273c2.chunk.js.map",
+    "main.css": "/tech-assignment-task-manager/static/css/main.7c17bd38.chunk.css",
+    "main.js": "/tech-assignment-task-manager/static/js/main.3af815f2.chunk.js",
+    "main.js.map": "/tech-assignment-task-manager/static/js/main.3af815f2.chunk.js.map",
+    "runtime-main.js": "/tech-assignment-task-manager/static/js/runtime-main.b7629166.js",
+    "runtime-main.js.map": "/tech-assignment-task-manager/static/js/runtime-main.b7629166.js.map",
+    "static/js/2.3d4a9b61.chunk.js": "/tech-assignment-task-manager/static/js/2.3d4a9b61.chunk.js",
+    "static/js/2.3d4a9b61.chunk.js.map": "/tech-assignment-task-manager/static/js/2.3d4a9b61.chunk.js.map",
+    "static/js/3.0261824b.chunk.js": "/tech-assignment-task-manager/static/js/3.0261824b.chunk.js",
+    "static/js/3.0261824b.chunk.js.map": "/tech-assignment-task-manager/static/js/3.0261824b.chunk.js.map",
     "index.html": "/tech-assignment-task-manager/index.html",
-    "static/css/main.8f4c9bd3.chunk.css.map": "/tech-assignment-task-manager/static/css/main.8f4c9bd3.chunk.css.map",
-    "static/js/2.e5a04b6f.chunk.js.LICENSE.txt": "/tech-assignment-task-manager/static/js/2.e5a04b6f.chunk.js.LICENSE.txt"
+    "static/css/main.7c17bd38.chunk.css.map": "/tech-assignment-task-manager/static/css/main.7c17bd38.chunk.css.map",
+    "static/js/2.3d4a9b61.chunk.js.LICENSE.txt": "/tech-assignment-task-manager/static/js/2.3d4a9b61.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.a7058dea.js",
-    "static/js/2.e5a04b6f.chunk.js",
-    "static/css/main.8f4c9bd3.chunk.css",
-    "static/js/main.7523768c.chunk.js"
+    "static/js/runtime-main.b7629166.js",
+    "static/js/2.3d4a9b61.chunk.js",
+    "static/css/main.7c17bd38.chunk.css",
+    "static/js/main.3af815f2.chunk.js"
   ]
 }
