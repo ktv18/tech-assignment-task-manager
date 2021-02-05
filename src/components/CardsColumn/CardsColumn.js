@@ -4,6 +4,7 @@ import styles from './CardsColumn.module.css';
 import DraggableCard from '../DraggableCard';
 import AddCard from '../AddCard';
 import Button from '../Button';
+import DeleteButton from '../DeleteButton';
 import PopOver from '../PopOver';
 import EditableText from '../EditableText';
 import { renderIf } from '../../utils/rendererUtils';
@@ -47,9 +48,7 @@ const CardsColumn = (props) => {
         </Button>
         {renderIf(showPopOver)(
           <PopOver className={styles.popOver} onClose={() => setShowPopOver(false)}>
-            <Button type='button' className={styles.delete} onClick={onColumnDelete}>
-              delete
-            </Button>
+            <DeleteButton className={styles.delete} onClick={onColumnDelete} />
           </PopOver>,
         )}
       </div>

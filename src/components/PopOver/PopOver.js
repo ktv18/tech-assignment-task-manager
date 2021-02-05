@@ -12,6 +12,7 @@ const PopOver = (props) => {
     elementRef: ref,
     onOuterClick: onClose,
   });
+
   return (
     <div ref={ref} className={classNames(styles.popOver, className)}>
       {children}

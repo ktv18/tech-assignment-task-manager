@@ -68,10 +68,4 @@ div.popOver {
 
 button.delete {
   margin-left: 10px;
-  border: 1px #d80000 solid;
-  color: #bf0000;
-}
-button.delete:hover {
-  background-color: #bf0000;
-  color: #fdfdfd;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../../../Button';
-import styles from './UserTextRow.module.css';
+import DeleteButton from '../../../DeleteButton';
 
 const UserTextRow = (props) => {
   const { className, user, onEditClick, onDeleteClick } = props;
@@ -13,9 +13,7 @@ const UserTextRow = (props) => {
         <div key={index}>{item}</div>
       ))}
       <Button onClick={onEditClick}>edit</Button>
-      <Button onClick={onDeleteClick} className={styles.delete}>
-        delete
-      </Button>
+      <DeleteButton onClick={onDeleteClick} />
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import styles from './BoardTile.module.css';
 import Button from '../Button';
+import DeleteButton from '../DeleteButton';
 import PopOver from '../PopOver';
 import { renderIf } from '../../utils/rendererUtils';
 
@@ -56,9 +57,9 @@ const BoardTile = (props) => {
             <br />
             <div className={styles.buttons}>
               <Button type='submit'>Update</Button>
-              <Button type='button' className={styles.delete} onClick={onBoardDelete}>
+              <DeleteButton type='button' className={styles.delete} onClick={onBoardDelete}>
                 delete
-              </Button>
+              </DeleteButton>
             </div>
           </form>
         </PopOver>,
