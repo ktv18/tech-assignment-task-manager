@@ -11,9 +11,6 @@ import { boardsEntity, usersEntity, tasksEntity, columnsEntity } from '../consta
 import GlobalStateContext from '../GlobalStateContext';
 import { useHandlers, useStorageHook } from './hooks';
 
-const allTasks = readFromStorage(tasksEntity);
-const allColumns = readFromStorage(columnsEntity);
-
 function App() {
   const {
     state,
@@ -32,7 +29,7 @@ function App() {
 
   const { users, boards, currentBoardId } = state;
 
-  useStorageHook({ users, boards });
+  const { allColumns, allTasks } = useStorageHook({ users, boards, currentBoardId });
 
   return (
     <div className={styles.app}>
@@ -64,11 +61,21 @@ function App() {
           </>
         ) : (
           <Board
+            key={currentBoardId}
             initialTasks={allTasks && allTasks[currentBoardId]}
             initialColumns={allColumns && allColumns[currentBoardId]}
             users={users}
-            onColumnsSave={(cols) => saveToStorage(columnsEntity, { [currentBoardId]: cols })}
-            onTasksSave={(tasks) => saveToStorage(tasksEntity, { [currentBoardId]: tasks })}
+            onColumnsSave={(cols) => {
+              const allColumns = readFromStorage(columnsEntity);
+              saveToStorage(columnsEntity, {
+                ...allColumns,
+                [currentBoardId]: cols,
+              });
+            }}
+            onTasksSave={(tasks) => {
+              const allTasks = readFromStorage(tasksEntity);
+              saveToStorage(tasksEntity, { ...allTasks, [currentBoardId]: tasks });
+            }}
           />
         )}
       </GlobalStateContext.Provider>

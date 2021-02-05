@@ -15,6 +15,7 @@ const useHandlers = (args) => {
   const [tasks, setTasks] = useState(initialTasks || []);
 
   const handleDrop = (task, colId) => {
+    console.log('task', task);
     setTasks((prevState) =>
       prevState.filter((i) => i.id !== task.id).concat(selectTaskProps({ ...task, colId })),
     );
