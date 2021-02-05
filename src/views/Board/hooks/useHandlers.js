@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { generateRandomId } from '../../../utils/common';
 
 const selectTaskProps = ({ id, usersIds, title, colId, index }) => ({
