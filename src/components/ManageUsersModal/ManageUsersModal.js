@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import classNames from 'classnames';
 import Modal from '../Modal';
 import Button from '../Button';
 import UsersDropdown from '../UsersDropdown';
@@ -39,8 +40,12 @@ const ManageUsersModal = (props) => {
       };
     });
 
-  const renderForm = ({ key, onCancel, fields, onSubmit }) => (
-    <UserForm key={key} className={styles.userOption} {...{ onCancel, fields, onSubmit }} />
+  const renderForm = ({ key, onCancel, fields, onSubmit, className, title }) => (
+    <UserForm
+      key={key}
+      className={classNames(styles.userOption, className)}
+      {...{ onCancel, fields, onSubmit, title }}
+    />
   );
 
   const handleCreateUser = (user) => {
@@ -64,6 +69,8 @@ const ManageUsersModal = (props) => {
           {renderIf(newUserMode)(
             renderForm({
               key: '',
+              title: 'Add New User',
+              className: styles.addUserForm,
               onCancel: () => setNewUserMode(false),
               onSubmit: handleCreateUser,
               fields: fieldsConfig.map(getUserField),

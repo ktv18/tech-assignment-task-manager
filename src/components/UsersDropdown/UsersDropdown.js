@@ -10,6 +10,14 @@ const normalizeOption = (user) => ({
 
 const UsersDropdown = (props) => {
   const { className, users = [], title, onChange, selectedValues, renderOptionWrapper } = props;
+  if (users.length === 0) {
+    return (
+      <>
+        <h3>No Users yet ¯\_(ツ)_/¯</h3>
+        but you can always create one
+      </>
+    );
+  }
   return (
     <Dropdown
       className={className}

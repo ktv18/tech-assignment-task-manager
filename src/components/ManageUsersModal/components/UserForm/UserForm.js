@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import { renderIf } from '../../../../utils/rendererUtils';
 import Button from '../../../Button';
 import styles from './UserForm.module.css';
 
@@ -15,14 +16,16 @@ const getInitialState = (fields) =>
   }, {});
 
 const UserForm = (props) => {
-  const { className, fields = [], onSubmit, onCancel } = props;
+  const { className, fields = [], onSubmit, onCancel, title } = props;
   const [state, setState] = useState(getInitialState(fields));
+  const [showValidationError, setShowValidationError] = useState(false);
 
   const checkError = (name) =>
     state[name].isRequired && Boolean(state[name].value.trim()) === false;
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setShowValidationError(true);
     const isFormValid = !Object.keys(state).some(checkError);
     if (isFormValid) {
       const newUser = Object.keys(state).reduce(
@@ -49,7 +52,10 @@ const UserForm = (props) => {
 
   const renderField = ({ name, placeholder }, index) => (
     <input
-      className={classNames(styles.input, checkError(name) && styles.inputError)}
+      className={classNames(
+        styles.input,
+        showValidationError && checkError(name) && styles.inputError,
+      )}
       placeholder={placeholder}
       key={index}
       value={state[name].value}
@@ -61,11 +67,14 @@ const UserForm = (props) => {
   );
   return (
     <form className={className} onSubmit={handleSubmit}>
+      {renderIf(title)(<h3 className={styles.title}>{title}</h3>)}
       {fields.map(renderField)}
-      <Button type='submit'>save</Button>
-      <Button type='button' onClick={onCancel}>
-        cancel
-      </Button>
+      <div className={styles.buttons}>
+        <Button type='submit'>save</Button>
+        <Button type='button' onClick={onCancel}>
+          cancel
+        </Button>
+      </div>
     </form>
   );
 };

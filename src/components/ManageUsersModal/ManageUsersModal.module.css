@@ -9,6 +9,7 @@
 
 .newUserSection {
   display: flex;
+  justify-content: center;
 }
 
 .newUserSection button {
@@ -29,4 +30,9 @@
 }
 .userOption > * {
   margin: 10px;
+}
+
+.addUserForm {
+  display: flex;
+  flex-direction: column;
 }
